@@ -5,6 +5,11 @@ import path from "path";
 
 const port = Number(process.env.PORT ?? 5173);
 
+// Données réelles : l'API de NexusTower (qui relaie aussi HomeboxServer, jeton côté serveur).
+const proxy = {
+  "/api": { target: process.env.TOWER_API ?? "http://127.0.0.1:8791", changeOrigin: true },
+};
+
 if (!Number.isInteger(port) || port < 1 || port > 65535) {
   throw new Error(`Invalid PORT value: "${process.env.PORT}"`);
 }
@@ -34,10 +39,12 @@ export default defineConfig({
     fs: {
       strict: true,
     },
+    proxy,
   },
   preview: {
     port: Number(process.env.PORT ?? 4173),
     host: "0.0.0.0",
     allowedHosts: true,
+    proxy,
   },
 });

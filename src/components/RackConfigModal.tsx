@@ -67,7 +67,7 @@ export function RackConfigModal({ unitId, current, onSave, onClose }: Props) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4"
       style={{ backgroundColor: "rgba(0,0,0,0.75)" }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
@@ -76,7 +76,7 @@ export function RackConfigModal({ unitId, current, onSave, onClose }: Props) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.15 }}
-        className="w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-lg flex flex-col"
+        className="w-full max-w-xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto rounded-t-xl sm:rounded-lg flex flex-col pb-[env(safe-area-inset-bottom)]"
         style={{ background: "#0e0e0e", border: "1px solid #222" }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -106,7 +106,7 @@ export function RackConfigModal({ unitId, current, onSave, onClose }: Props) {
             <label className="font-mono text-[10px] text-white/40 uppercase tracking-widest">
               Type d'appareil
             </label>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {ALL_TYPES.map((t) => {
                 const Icon = TYPE_ICONS[t];
                 const accent = TYPE_ACCENT[t];
@@ -230,7 +230,7 @@ export function RackConfigModal({ unitId, current, onSave, onClose }: Props) {
 function SwitchFields({ form, set }: { form: SwitchConfig; set: (p: any) => void }) {
   return (
     <>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField label="Nombre de ports">
           <SelectInput
             value={String(form.portCount)}
@@ -273,7 +273,7 @@ function SwitchFields({ form, set }: { form: SwitchConfig; set: (p: any) => void
 function FirewallFields({ form, set }: { form: FirewallConfig; set: (p: any) => void }) {
   return (
     <>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField label="Ports WAN">
           <SelectInput
             value={String(form.wanPorts)}
@@ -312,7 +312,7 @@ function FirewallFields({ form, set }: { form: FirewallConfig; set: (p: any) => 
 function ServerFields({ form, set }: { form: ServerConfig; set: (p: any) => void }) {
   return (
     <>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField label="Cœurs CPU">
           <SelectInput
             value={String(form.cpuCores)}
@@ -354,7 +354,7 @@ function ServerFields({ form, set }: { form: ServerConfig; set: (p: any) => void
 function GPUServerFields({ form, set }: { form: GPUServerConfig; set: (p: any) => void }) {
   return (
     <>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField label="Modèle GPU">
           <TextInput
             value={form.gpuModel}
@@ -408,7 +408,7 @@ function NASFields({ form, set }: { form: NASConfig; set: (p: any) => void }) {
           ]}
         />
       </FormField>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField label="Type RAID">
           <SelectInput
             value={form.raidType}
@@ -430,7 +430,7 @@ function NASFields({ form, set }: { form: NASConfig; set: (p: any) => void }) {
 
 function UPSFields({ form, set }: { form: UPSConfig; set: (p: any) => void }) {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <FormField label="Marque / Modèle">
         <TextInput
           value={form.brand}
